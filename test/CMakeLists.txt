@@ -39,7 +39,13 @@ set(RUN_TESTS
   # jgol_1078_juggling.cc
   # swea_1267_workseq.cc
   # swea_1249_supply.cc
-  jgol_1462_treasure.cc
+  # jgol_1462_treasure.cc
+  # jgol_1060_mst.cc
+  # swea_1251_hanaro.cc
+  # swea_1849_binscale.cc
+  # swea_1231_inorder.cc
+  # swea_1248_ancestor.cc
+  jgol_1726_max_in_range.cc
 )
 
 add_executable(run_test ${RUN_TESTS})

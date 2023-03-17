@@ -4,7 +4,7 @@
 
 ## Configuration
 
-Add file in `RUN_TESTS` in [CMakeLists.txt](./test/CMakeLists.txt).
+Add file path in `RUN_TESTS` variable in [CMakeLists.txt](./test/CMakeLists.txt).
 
 ## Build
 
@@ -27,3 +27,13 @@ $ mkdir debug
 $ cmake -H. -B debug -D CMAKE_BUILD_TYPE=Debug -D CMAKE_EXPORT_COMPILE_COMMANDS=YES
 $ ln -s Debug/compile_commands.json .
 ```
+
+## Sources
+
+* [SW Expert Academy (swea)](https://swexpertacademy.com/main/main.do)
+* [Jungol (jgol)](http://www.jungol.co.kr)
+
+| Site | No. | Title | Sol | Tags |
+|:----:| ---:|:----- |:---:|      |
+| swea |     |  |  |  |
+| swea |     |  |  |  |

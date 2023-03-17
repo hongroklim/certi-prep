@@ -20,12 +20,12 @@ TEST(MainTest, main){
   EXPECT_NE(sfp, nullptr);
 #endif
   
-  int tc, TC = 10;
-  int i;
-  int ans;
+  int TC;
   
-  for(tc=1; tc<=TC; tc++){
-    cout << "#" << tc << " " << ans << endl;
+  cin >> TC;
+
+  for (int tc=1; tc<=TC; tc++) {
+    cout << "#" << tc << " " << 1 << endl;
   }
 
 #ifndef __LOCAL__
