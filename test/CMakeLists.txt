@@ -45,7 +45,10 @@ set(RUN_TESTS
   # swea_1849_binscale.cc
   # swea_1231_inorder.cc
   # swea_1248_ancestor.cc
-  jgol_1726_max_in_range.cc
+  # jgol_1726_max_in_range.cc
+  # jgol_3142_id_check.cc
+  # jgol_2613_tomato.cc
+  jgol_2058_hedgehog.cc
 )
 
 add_executable(run_test ${RUN_TESTS})

@@ -19,7 +19,9 @@ TEST(MainTest, main){
   sfp = freopen("input/swea_0000.txt", "r", stdin);
   EXPECT_NE(sfp, nullptr);
 #endif
-  
+  ios_base::sync_with_stdio(false);
+  cin.tie(nullptr);
+
   int TC;
   
   cin >> TC;
