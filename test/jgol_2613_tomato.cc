@@ -6,8 +6,9 @@
 
 #include <iostream>
 #include <cstring>
-#include <vector>
 #include <queue>
+
+#define MAX_N 1000
 
 using namespace std;
 
@@ -25,7 +26,7 @@ int main(int argc, char** argv) {
 TEST(MainTest, main){
   FILE *sfp;
 
-  sfp = freopen("input/jgol_2613.txt", "r", stdin);
+  sfp = freopen("input/jgol_2613.txt", "r", stdin); // 8
   EXPECT_NE(sfp, nullptr);
 #endif
   
@@ -36,21 +37,27 @@ TEST(MainTest, main){
   cin >> M >> N;
 
   int **box = new int*[N+2];
+
   box[0] = new int[M+2];
   box[N+1] = new int[M+2];
+
   memset(box[0], -1, sizeof(int)*(M+2));
   memset(box[N+1], -1, sizeof(int)*(M+2));
 
-  vector<node_t> v;
+  queue<node_t> q;
+  int unripes = 0;
   
   for (int n=1; n<=N; n++) {
     box[n] = new int[M+2];
+
     box[n][0] = box[n][M+1] = -1;
 
     for (int m=1; m<=M; m++) {
       cin >> box[n][m];
       if (box[n][m] == 1) {
-        v.push_back({n, m, 0});
+        q.push({n, m, 0});
+      } else if (box[n][m] == 0) {
+        unripes++;
       }
     }
   }
@@ -58,45 +65,25 @@ TEST(MainTest, main){
   int di[4] = {1, 0, -1, 0};
   int dj[4] = {0, 1, 0, -1};
   
-  queue<node_t> q;
-  
-  // init queue
-  for (int i=0; i<v.size(); i++) {
-    node_t e = v[i];
-
-    for (int k=0; k<4; k++)
-      if (box[e.i+di[k]][e.j+dj[k]] == 0)
-        q.push({e.i+di[k], e.j+dj[k], e.d+1});
-  }
-  
   // bfs
   int max_d = 0;
   while (!q.empty()) {
     node_t e = q.front();
     q.pop();
     
-    if (box[e.i][e.j] == 1) continue;
     if (max_d < e.d) max_d = e.d;
 
-    box[e.i][e.j] = 1;
-
-    for (int k=0; k<4; k++)
-      if (box[e.i+di[k]][e.j+dj[k]] == 0)
-        q.push({e.i+di[k], e.j+dj[k], e.d+1});
-  }
-
-  // find remaining 0
-  for (int n=1; n<=N; n++) {
-    for (int m=1; m<=M; m++) {
-      if (box[n][m] == 0) {
-        max_d = -1;
-        cout << max_d << endl;
-#ifndef __LOCAL__
-        return 0;
-#endif
+    for (int k=0; k<4; k++) {
+      int ni = e.i+di[k], nj = e.j+dj[k];
+      if (box[ni][nj] == 0) {
+        q.push({ni, nj, e.d+1});
+        box[ni][nj] = 1;
+        unripes--;
       }
     }
   }
+  
+  if (unripes != 0) max_d = -1;
 
   cout << max_d << endl;
 
@@ -104,4 +91,3 @@ TEST(MainTest, main){
   return 0;
 #endif
 }
-

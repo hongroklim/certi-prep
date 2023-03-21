@@ -48,7 +48,10 @@ set(RUN_TESTS
   # jgol_1726_max_in_range.cc
   # jgol_3142_id_check.cc
   # jgol_2613_tomato.cc
-  jgol_2058_hedgehog.cc
+  # jgol_2058_hedgehog.cc
+  swea_1247_opt_path.cc
+  # jgol_1889_nqueen.cc
+  # jgol_1662_bishop.cc
 )
 
 add_executable(run_test ${RUN_TESTS})

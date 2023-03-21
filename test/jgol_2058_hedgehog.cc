@@ -19,28 +19,6 @@ typedef struct {
   int d;
 } pos_t;
 
-int board[MAX_N+2][MAX_N+2];
-bool visited[MAX_N+2][MAX_N+2][MAX_N+2][MAX_N+2];
-
-int DAI, DAJ, DBI, DBJ;
-
-int di[9] = {-1, -1, -1,  0,  0,  0,  1,  1,  1};
-int dj[9] = {-1,  0,  1, -1,  0,  1, -1,  0,  1};
-
-pos_t next_pos(pos_t p, int ka, int kb) {
-  int ai = p.ai+di[ka], aj = p.aj+dj[ka];
-  int bi = p.bi+di[kb], bj = p.bj+dj[kb];
-
-  if (board[ai][aj] == 0
-      && board[bi][bj] == 0
-      && (ai-bi < -1 || 1 < ai-bi
-          || aj-bj < -1 || 1 < aj-bj)) {
-    return {ai, aj, bi, bj, p.d+1};
-  } else {
-    return p; // not movable
-  }
-}
-
 #ifndef __LOCAL__
 int main(int argc, char** argv) {
 #endif
@@ -54,8 +32,10 @@ TEST(MainTest, main){
   sfp = freopen("input/jgol_2058_2.txt", "r", stdin);   // 14
   EXPECT_NE(sfp, nullptr);
 #endif
-  
   int N, ai, aj, bi, bj;
+  int DAI, DAJ, DBI, DBJ;
+  
+  int board[MAX_N+2][MAX_N+2];
 
   cin >> N;
   cin >> ai >> aj >> DAI >> DAJ;
@@ -71,12 +51,11 @@ TEST(MainTest, main){
     }
   }
 
-  for (int a=0; a<N+2; a++)
-    for (int b=0; b<N+2; b++)
-      for (int c=0; c<N+2; c++)
-        for (int d=0; d<N+2; d++)
-          visited[a][b][c][d] = false;
+  bool visited[MAX_N+2][MAX_N+2][MAX_N+2][MAX_N+2];
   
+  int di[9] = {-1, -1, -1,  0,  0,  0,  1,  1,  1};
+  int dj[9] = {-1,  0,  1, -1,  0,  1, -1,  0,  1};
+
   // bfs
   queue<pos_t> q;
   q.push({ai, aj, bi, bj, 0});
@@ -85,25 +64,26 @@ TEST(MainTest, main){
     pos_t p = q.front();
     q.pop();
     
-    if (p.ai == DAI && p.aj == DAJ
-        && p.bi == DBI && p.bj == DBJ) {
-      cout << p.d << endl;  // both reached
+    if (p.ai == DAI && p.aj == DAJ && p.bi == DBI && p.bj == DBJ) {
+      cout << p.d << endl;
       break;
-    } else if(visited[p.ai][p.aj][p.bi][p.bj]) {
-      continue;             // already visited
-    } else {
-      visited[p.ai][p.aj][p.bi][p.bj] = true;
     }
 
-    cout << "(" << p.ai << " " << p.aj << ", " << p.bi << " " << p.bj << ") " << endl;
+    // cout << "(" << p.ai << " " << p.aj << ", " << p.bi << " " << p.bj << ") " << endl;
 
     for (int ka=0; ka<9; ka++) {
       for (int kb=0; kb<9; kb++) {
-        pos_t p_next = next_pos(p, ka, kb);
-        if (p.d < p_next.d) q.push(p_next);
+        int ai = p.ai+di[ka], aj = p.aj+dj[ka];
+        int bi = p.bi+di[kb], bj = p.bj+dj[kb];
+
+        if (!visited[ai][aj][bi][bj]
+            && board[ai][aj] == 0 && board[bi][bj] == 0
+            && (abs(ai-bi) > 1 || abs(aj-bj) > 1)) {
+          visited[ai][aj][bi][bj] = true;
+          q.push({ai, aj, bi, bj, p.d+1});
+        }
       }
     }
-
   }
 
 #ifndef __LOCAL__
