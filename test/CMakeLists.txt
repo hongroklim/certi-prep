@@ -49,9 +49,19 @@ set(RUN_TESTS
   # jgol_3142_id_check.cc
   # jgol_2613_tomato.cc
   # jgol_2058_hedgehog.cc
-  swea_1247_opt_path.cc
+  # swea_1247_opt_path.cc
   # jgol_1889_nqueen.cc
   # jgol_1662_bishop.cc
+  # jgol_1824_sudoku.cc
+
+  # jgol_1077_knapsack1.cc
+  # jgol_1078_knapsack2.cc
+  # jgol_2112_3tiles.cc
+  # jgol_2191_min_edit.cc
+
+  # swea_1263_pplnetwork.cc
+  # swea_1260_chemicals.cc
+  jgol_1825_invest.cc
 )
 
 add_executable(run_test ${RUN_TESTS})

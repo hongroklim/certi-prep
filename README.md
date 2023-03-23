@@ -72,3 +72,11 @@ $ ln -s Debug/compile_commands.json .
 | jgol | 3142  | ID검사 | `hash` |
 | jgol | 2613  | 토마토(고) | `bfs` |
 | jgol | 2058  | 고돌이 고소미 | `bfs` |
+| swea | 1247  | [S/W 문제해결 응용] 3일차 - 최적 경로 | `backtrack` |
+| jgol | 1889  | N Queen | `backtrack` |
+| jgol | 1662  | 비숍 | `backtrack` |
+| jgol | 1824  | 스도쿠 | `backtrack` |
+| jgol | 1077  | 배낭채우기1 | `dp` |
+| jgol | 1078  | 배낭채우기2 | `dp` |
+| jgol | 2112  | 세 줄로 타일 깔기(3열로 타일깔기) | |
+| jgol | 2191  | 최소 편집 | |
