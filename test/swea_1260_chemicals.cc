@@ -12,22 +12,22 @@
 using namespace std;
 
 typedef struct {
-  int i;
   int j;
   int width;
   int height;
 } pos_t;
 
-char board[MAX_N][MAX_N+1];
+// char board[MAX_N+1][MAX_N+1];
+char line[MAX_N+1];
 
 vector<pos_t> scanned;
 
-void do_scan(int i, int begin_j, int end_j) {
-  for (int j=begin_j; j<end_j; j++) {
-    if (board[i][j] == '0') continue;
+void do_scan(int begin, int end) {
+  for (int j=begin; j<end; j++) {
+    if (line[j] == '0') continue;
 
-    pos_t p = {i, j, 1, 1};
-    while (board[i][j+p.width] != '0') p.width++;
+    pos_t p = {j, 1, 1};
+    while (line[j+p.width] != '0') p.width++;
     scanned.push_back(p);
     j += p.width;
   }
@@ -47,7 +47,7 @@ TEST(MainTest, main){
   ios_base::sync_with_stdio(false);
   cin.tie(nullptr);
   
-  int TC, N, i, j, max_j, r, k;
+  int TC, N, i, j, end_j, r, k;
 
   // flow: scanned => cur => pos;
   vector<pos_t> cur;
@@ -60,20 +60,20 @@ TEST(MainTest, main){
     
     for (i=0; i<N; i++) {
       for (j=0; j<N; j++) {
-        cin >> board[i][j];
+        cin >> line[j];
       }
-      board[i][N] = '0';  // buffer
+      line[N] = '0';
       
       // scan line by line
       j = 0;
-      max_j = cur.empty() ? N : cur[0].j;
-      do_scan(i, j, max_j);
+      end_j = cur.empty() ? N : cur[0].j;
+      do_scan(j, end_j);
 
       for (auto it=cur.begin(); it<cur.end(); it++) {
         j = it->j + it->width;
-        max_j = (it+1) == cur.end() ? N : (it+1)->j;
+        end_j = (it+1) == cur.end() ? N : (it+1)->j;
 
-        if (board[i][it->j] != '0') {
+        if (line[it->j] != '0') {
           // detected block continues
           it->height++;
         } else {
@@ -84,12 +84,12 @@ TEST(MainTest, main){
         }
         
         // scan between detected blocks
-        do_scan(i, j, max_j);
+        do_scan(j, end_j);
       }
       
       if (!scanned.empty()) {
         // from scanned to cur
-        // (keep order of j increasing)
+        // (like merge phase in mergesort)
         vector<pos_t>::iterator s = scanned.begin(), c = cur.begin();
         while (s < scanned.end()) {
           while (c < cur.end() && c->j < s->j) c++;
@@ -126,7 +126,7 @@ TEST(MainTest, main){
       d_next.push_back(i);
 
     // apppend chain (from height to width)
-    i = (!d_next.empty()) ? h_w[d_next[0]] : pos[0].height;
+    i = d_next.empty() ? pos[0].height : h_w[d_next[0]];
     for (; i>0; i=h_w[i])
       d_prev.push_back(i);
     

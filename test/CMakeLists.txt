@@ -61,7 +61,10 @@ set(RUN_TESTS
 
   # swea_1263_pplnetwork.cc
   # swea_1260_chemicals.cc
-  jgol_1825_invest.cc
+  # jgol_1825_invest.cc
+
+  # jgol_1129_line_meet.cc
+  jgol_1151_convexhull.cc
 )
 
 add_executable(run_test ${RUN_TESTS})

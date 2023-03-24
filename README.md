@@ -78,5 +78,12 @@ $ ln -s Debug/compile_commands.json .
 | jgol | 1824  | 스도쿠 | `backtrack` |
 | jgol | 1077  | 배낭채우기1 | `dp` |
 | jgol | 1078  | 배낭채우기2 | `dp` |
-| jgol | 2112  | 세 줄로 타일 깔기(3열로 타일깔기) | |
-| jgol | 2191  | 최소 편집 | |
+| jgol | 2112  | 세 줄로 타일 깔기(3열로 타일깔기) | `dp` |
+| jgol | 2191  | 최소 편집 | `edit_dist` |
+| swea | 1263  | [S/W 문제해결 응용] 8일차 - 사람 네트워크2 | `floyd` |
+| swea | 1260  | [S/W 문제해결 응용] 7일차 - 화학물질2 | `dp` |
+| jgol | 1825  | 기업투자 | `dp` |
+| jgol | 1129  | 평면내 선분의 교점 | `ccw` |
+| jgol | 1151  | 볼록다각형(convexhull) | `ccw`, `graham` |
+| jgol | 1225  | 사람감시 | |
+| jgol | 3336  | 직각다각형 | |
