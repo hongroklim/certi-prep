@@ -64,7 +64,9 @@ set(RUN_TESTS
   # jgol_1825_invest.cc
 
   # jgol_1129_line_meet.cc
-  jgol_1151_convexhull.cc
+  # jgol_1151_convexhull.cc
+  # jgol_1225_ppl_watch.cc
+  jgol_3336_rec_polygon.cc
 )
 
 add_executable(run_test ${RUN_TESTS})
