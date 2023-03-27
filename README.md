@@ -87,3 +87,5 @@ $ ln -s Debug/compile_commands.json .
 | jgol | 1151  | 볼록다각형(convexhull) | `ccw`, `graham` |
 | jgol | 1225  | 사람감시 | |
 | jgol | 3336  | 직각다각형 | |
+|      | 0101  | 개미탈출 | |
+|      | 0102  | 최소 섬 | `dijkstra` |

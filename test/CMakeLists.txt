@@ -66,7 +66,10 @@ set(RUN_TESTS
   # jgol_1129_line_meet.cc
   # jgol_1151_convexhull.cc
   # jgol_1225_ppl_watch.cc
-  jgol_3336_rec_polygon.cc
+  # jgol_3336_rec_polygon.cc
+
+  # quiz_0101_ant_escape.cc
+  quiz_0102_min_island.cc
 )
 
 add_executable(run_test ${RUN_TESTS})
