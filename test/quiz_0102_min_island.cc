@@ -5,11 +5,22 @@
 #endif
 
 #include <iostream>
+#include <queue>
 
-#define MAX_N  100
+#define MAX_N  100000
 #define MAX_W  9999999
 
 using namespace std;
+
+typedef struct node_s {
+  int n;
+  int supply;
+  int weight;
+
+  bool operator<(const node_s n) const {
+      return this->weight > n.weight;
+  }
+} node_t;
 
 #ifndef __LOCAL__
 int main() {
@@ -25,21 +36,20 @@ TEST(MainTest, main){
   cin.tie(nullptr);
 
   int TC, N, M, K;
-  int src, dest, weight;
-  
-  // Dijkstra
+  int src, dest, weight, min_weight;
   int adj[MAX_N+1][MAX_N+1];
-  bool U[MAX_N+1];
-  int D[MAX_N+1][2];
 
   cin >> TC;
 
   for (int tc=1; tc<=TC; tc++) {
     cin >> N >> M >> K;
     
-    for (int i=1; i<=N; i++) 
-      for (int j=1; j<=N; j++)
+    for (int i=1; i<=N; i++) {
+      adj[i][0] = 0;
+      for (int j=1; j<=N; j++) {
         adj[i][j] = MAX_W;
+      }
+    }
 
     for (int m=1; m<=M; m++) {
       cin >> src >> dest >> weight;
@@ -48,41 +58,40 @@ TEST(MainTest, main){
 
     for (int k=1; k<=K; k++) {
       cin >> src >> weight;
-      for (int n=1; n<=N; n++)
-        adj[src][n] -= weight;
+      adj[src][0] = weight;
     }
+     
+    min_weight = MAX_W;
+    priority_queue<node_t> q;
+    q.push({1, 0, 0});
     
-    for (int n=1; n<=N; n++) {
-      adj[n][n] = 0;
-      U[n] = false;
-      D[n][0] = MAX_W;
-      D[n][1] = MAX_W;
-    }
-    
-    D[1][0] = 0;
-    D[1][1] = 0;
-
-    while (true) {
-      int min_n = 0, min_d = MAX_W;
-
-      for (int n=1; n<=N; n++) {
-        if (!U[n] && min_d > (D[n][0]+D[n][1])) {
-          min_n = n;
-          min_d = (D[n][0]+D[n][1]);
-        }
+    // bfs
+    while (!q.empty()) {
+      node_t e = q.top();
+      q.pop();
+      
+      if (e.n == N) {
+        min_weight = min(min_weight, e.weight);
+        break;
       }
 
-      if (min_n == 0) break;
-      else U[min_n] = true;
+      for (int i=1; i<=N; i++) {
+        if (i != e.n && adj[e.n][i] != MAX_W) {
+          node_t ei = {i, e.supply+adj[e.n][0]-adj[e.n][i], e.weight};
 
-      for (int n=1; n<=N; n++) {
-        if ((D[n][0]+D[n][1]) > (D[min_n][0]+D[min_n][1]) + adj[min_n][n]){
-          D[n][0] = D[min_n][0] + adj[min_n][n];
+          if (ei.supply < 0) {
+            ei.weight -= ei.supply;
+            ei.supply = 0;
+          }
+
+          if (ei.weight < min_weight) {
+            q.push(ei);
+          }
         }
       }
     }
 
-    cout << "#" << tc << " " << D[N][0] << endl;
+    cout << "#" << tc << " " << min_weight << endl;
   }
 
 #ifndef __LOCAL__
