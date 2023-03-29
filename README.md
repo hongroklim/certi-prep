@@ -89,3 +89,7 @@ $ ln -s Debug/compile_commands.json .
 | jgol | 3336  | 직각다각형 | |
 |      | 0101  | 개미탈출 | |
 |      | 0102  | 최소 섬 | `dijkstra` |
+|      | 0201  | 타일 채우기 | `DP` |
+|      | 0202  | 말뚝울타리치기 | `graham` |
+|      | 0301  | 최소증가스패닝트리 | `mst`, `djkstra` |
+|      | 0302  | 길찾기 | `dfs` |

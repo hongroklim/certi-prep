@@ -72,7 +72,10 @@ set(RUN_TESTS
   # quiz_0102_min_island.cc
 
   # quiz_0201_tile_fill.cc
-  quiz_0202_barrier.cc
+  # quiz_0202_barrier.cc
+
+  # quiz_0301_mst_spanning.cc
+  quiz_0302_find_path.cc
 )
 
 add_executable(run_test ${RUN_TESTS})
