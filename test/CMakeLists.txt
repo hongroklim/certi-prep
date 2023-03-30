@@ -75,7 +75,10 @@ set(RUN_TESTS
   # quiz_0202_barrier.cc
 
   # quiz_0301_mst_spanning.cc
-  quiz_0302_find_path.cc
+  # quiz_0302_find_path.cc
+  # quiz_0303_elephant.cc
+
+  quiz_0401_cannel_fuel.cc
 )
 
 add_executable(run_test ${RUN_TESTS})
