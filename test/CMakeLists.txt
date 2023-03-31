@@ -78,7 +78,11 @@ set(RUN_TESTS
   # quiz_0302_find_path.cc
   # quiz_0303_elephant.cc
 
-  quiz_0401_cannel_fuel.cc
+  # quiz_0401_cannel_fuel.cc
+  # quiz_0402_unit_creation.cc
+
+  # quiz_0503_festival.cc
+  quiz_0504_permutation.cc
 )
 
 add_executable(run_test ${RUN_TESTS})
