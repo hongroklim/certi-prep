@@ -82,7 +82,9 @@ set(RUN_TESTS
   # quiz_0402_unit_creation.cc
 
   # quiz_0503_festival.cc
-  quiz_0504_permutation.cc
+  # quiz_0504_permutation.cc
+
+  quiz_0601_dir_cnt.cc
 )
 
 add_executable(run_test ${RUN_TESTS})
